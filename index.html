@@ -1,0 +1,25 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>にゃんこスケジュール</title>
+</head>
+<body>
+  <h1>イベントスケジュール</h1>
+  <ul id="eventList"></ul>
+
+  <script>
+    fetch("https://script.google.com/macros/s/AKfycbwZvDUB6WgzUjTgbaqj4Pg0Ae4iBzZMjnHAAphkKjO-Q9I6KASGSLF88RTMSeNzNk_6/exec") // ←ここにGASで公開されたJSONのURLを入れる
+      .then(res => res.json())
+      .then(data => {
+        const ul = document.getElementById("eventList");
+        data.forEach(ev => {
+          const li = document.createElement("li");
+          li.textContent = ev.title;
+          ul.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
